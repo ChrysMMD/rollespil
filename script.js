@@ -1,4 +1,4 @@
-let list = ["Kev og offer", "Kev og Larra", "Josef og Diana", "Jason og Sofia", "Jason og Carly", "Elias og Celia", "Sarah og Jonathan", "Larra og anden", "Sexkink", "Reginald og anden"];
+let list = ["Kev og offer", "Kev og Larra", "Josef og Diana", "Jason og Sophia", "Jason og Carly", "Elias og Celia", "Sarah og Jonathan", "Larra og anden", "Sexkink", "Reginald og anden"];
 
 function choose() {
   return list[Math.floor(Math.random() * list.length)];
