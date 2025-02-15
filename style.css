@@ -43,6 +43,31 @@ button:active {
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2); /* Mindre skygge */
 }
 
+#add {
+  margin-top: 10px;
+  padding: 5px 30px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #82b284; /* Grøn accentfarve */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+#add:hover {
+  background-color: #82b284; /* Mørkere grøn */
+  transform: scale(1.05); /* Let forstørrelse */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Mere intens skygge */
+}
+
+#add:active {
+  transform: scale(0.95); /* Let nedtrykning */
+  background-color: #82b284;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2); /* Mindre skygge */
+}
+
 /* Resultat-tekst */
 p {
   font-size: 1.2rem;
