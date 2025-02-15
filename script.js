@@ -2,7 +2,7 @@ let list = [
   "Kev og offer",
   "Kev og Larra",
   "Josef og Diana",
-  "Jason og Sofia",
+  "Jason og Sophia",
   "Jason og Carly",
   "Elias og Celia",
   "Sarah og Jonathan",
