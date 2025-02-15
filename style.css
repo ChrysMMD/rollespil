@@ -1,0 +1,57 @@
+/* Generel stil */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+/* Knappen */
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #4caf50; /* Grøn accentfarve */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+button:hover {
+  background-color: #45a049; /* Mørkere grøn */
+  transform: scale(1.05); /* Let forstørrelse */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Mere intens skygge */
+}
+
+button:active {
+  transform: scale(0.95); /* Let nedtrykning */
+  background-color: #3e8e41;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2); /* Mindre skygge */
+}
+
+/* Resultat-tekst */
+p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Centrer indholdet */
+#resultat {
+  color: #222;
+}
