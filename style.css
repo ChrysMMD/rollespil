@@ -232,3 +232,14 @@ select:focus {
   margin-right: 5px;
   cursor: pointer;
 }
+
+@media (max-width: 550px) {
+  .glass-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "title"
+      "right"
+      "aside";
+  }
+}
