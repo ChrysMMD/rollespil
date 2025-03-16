@@ -5,18 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rollespils Generator</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cabin:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Rollespils Generator</h1>
+    <div class="glass-container">
+      <div class="title">
+        <h1>Rollespils Generator</h1>
+      </div>
 
-    <button onclick="visResultat()">VÆLG ET PAR</button>
-    <p id="resultat"></p>
+      <div class="aside">
+        <div class="tilføj">
+          <input type="text" id="newItem" placeholder="Navn på nyt element" />
+          <input type="text" id="newSetting" placeholder="Setting" />
+          <div id="moodCheckboxes"></div>
+          <button onclick="addToArray()">Tilføj til liste</button>
+        </div>
+        <h2>Liste:</h2>
+        <ul id="arrayList">
+          <li>Ingen elementer i listen endnu.</li>
+        </ul>
+      </div>
 
-    <button onclick="toggleList()">Vis liste</button>
-    <ul id="arrayList" style="display: none"></ul>
+      <div class="right">
+        <h2>Generator</h2>
+        <div class="vælg">
+          <h3>Vælg en setting</h3>
+          <button class="filter-setting" data-setting="all">Alle</button>
+          <button class="filter-setting" data-setting="modern">Modern</button>
+          <button class="filter-setting" data-setting="fantasy">Fantasy</button>
+          <button class="filter-setting" data-setting="blandet">Blandet</button>
+          <button class="filter-setting" data-setting="post-apocalypse">
+            Post-apocalypse
+          </button>
 
-    <input type="text" id="newItem" placeholder="Tilføj nyt.." />
-    <button id="add" onclick="addToArray()">Tilføj</button>
+          <h3>Vælg Mood:</h3>
+          <button class="filter-mood" data-mood="all">Alle</button>
+          <button class="filter-mood" data-mood="lidenskabeligt">
+            Lidenskabeligt
+          </button>
+          <button class="filter-mood" data-mood="vold">Voldeligt</button>
+          <button class="filter-mood" data-mood="blidt">Blidt</button>
+          <button class="filter-mood" data-mood="forsigtigt">Forsigtigt</button>
+          <button class="filter-mood" data-mood="hårdt">Hårdt</button>
+
+          <h3>Generate</h3>
+          <button id="chooseButton" onclick="visResultat()">Vælg et par</button>
+          <div><p id="resultat"></p></div>
+        </div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>

@@ -1,82 +1,234 @@
+:root {
+  --font-color: #fbfbfb;
+}
+
 /* Generel stil */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+  font-family: "Outfit", sans-serif;
+  background: url("https://images.unsplash.com/photo-1740415924695-df06f4e1ab50?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+    no-repeat center center fixed;
+  background-size: cover;
+  color: var(--font-color);
   margin: 0;
-  padding: 0;
+  padding: 1rem;
+  height: 100vh;
+  position: relative;
+}
+
+/* Overlay-effekt */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* Dækker hele body */
+  background: rgba(0, 0, 0, 0.2); /* Mørkt overlay, juster opacitet her */
+  z-index: 1;
+}
+
+/* Sørg for at alt indhold vises over overlayet */
+.right,
+.Tilføj,
+.vælg,
+.glass-container {
+  position: relative;
+  z-index: 2;
+}
+
+.glass-container {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 2fr;
+  grid-template-areas:
+    "title title"
+    "aside right";
+}
+
+.aside {
+  grid-area: aside;
+}
+
+.right {
+  grid-area: right;
+}
+
+.title {
+  grid-area: title;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tilføj {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  max-width: 400px;
+  margin: 0 auto; /* Centrer containeren */
+  margin-bottom: 1rem;
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Let skygge */
+}
+
+.tilføj input,
+.tilføj select,
+.tilføj button {
+  width: 100%;
+}
+
+input::placeholder {
+  color: #999; /* Lys grå farve til placeholder */
+  font-style: italic;
+}
+
+.vælg {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  height: 100vh;
 }
 
 h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #444;
+  font-size: 3rem;
+  margin-bottom: 3.5rem;
+}
+
+h2 {
+  margin: 0;
+}
+
+.right h2 {
+  margin-top: -5px;
+}
+
+h3 {
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0;
+  margin-top: 1.5rem;
 }
 
 /* Knappen */
 button {
-  padding: 10px 20px;
-  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.3);
   color: #fff;
-  background-color: #4caf50; /* Grøn accentfarve */
-  border: none;
-  border-radius: 5px;
+  padding: 10px 25px;
+  margin: 10px 0;
+  border: none; /* Fjern standard-kant */
+  border-radius: 8px; /* Bløde hjørner */
+  outline: none; /* Fjern fokus-stroke */
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  transition: background 0.3s ease;
+  font-size: 16px;
+  backdrop-filter: blur(5px); /* Gør den glassy */
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Let skygge for dybde */
 }
 
 button:hover {
-  background-color: #45a049; /* Mørkere grøn */
-  transform: scale(1.05); /* Let forstørrelse */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Mere intens skygge */
+  background: rgba(255, 255, 255, 0.5); /* Lysere ved hover */
 }
 
-button:active {
-  transform: scale(0.95); /* Let nedtrykning */
-  background-color: #3e8e41;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2); /* Mindre skygge */
+button:focus {
+  outline: none; /* Fjern kant ved fokus */
 }
 
-#add {
-  margin-top: 10px;
-  padding: 5px 30px;
-  font-size: 1rem;
-  color: #fff;
-  background-color: #82b284; /* Grøn accentfarve */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+.aside button {
+  margin: 0.3rem;
+  margin-left: -1px;
 }
 
-#add:hover {
-  background-color: #82b284; /* Mørkere grøn */
-  transform: scale(1.05); /* Let forstørrelse */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Mere intens skygge */
-}
-
-#add:active {
-  transform: scale(0.95); /* Let nedtrykning */
-  background-color: #82b284;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2); /* Mindre skygge */
+/* Styling for de aktive filterknapper */
+.right button.active {
+  background-color: #f8a847; /* For eksempel orange baggrund, når aktiv */
+  color: white; /* Hvid tekst */
+  border: 2px solid #d87f24; /* En markant kant for at vise valget */
 }
 
 /* Resultat-tekst */
 p {
   font-size: 1.2rem;
-  color: #555;
+  color: #f9f9f9;
   margin-top: 20px;
   text-align: center;
 }
 
+ul {
+  margin: 0.5rem 0;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
 /* Centrer indholdet */
 #resultat {
-  color: #222;
+  color: #e7e7e7;
+  font-weight: bold;
+}
+
+/* Generel styling for inputfelter og select */
+input,
+select {
+  font-family: "Outfit", sans-serif;
+  width: 100%;
+  margin: 8px 0;
+  border: 1px solid #ccc; /* Lys grå kant */
+  border-radius: 4px; /* Let rundning på hjørnerne */
+  font-size: 16px;
+  background-color: #f9f9f9; /* Meget lys grå baggrund */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #d87f24; /* Blå kant ved fokus (kan ændres til den farve, du ønsker) */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blå skygge ved fokus */
+}
+
+input::placeholder,
+select option {
+  font-style: italic;
+  color: #888; /* Grå placeholder tekst */
+  border-bottom: 1px solid #888;
+}
+
+/* Styling for Select dropdown */
+select {
+  background-color: #fff; /* Hvid baggrund */
+  border: 1px solid #ddd; /* Lysere grå kant */
+  cursor: pointer;
+}
+
+/* Når brugeren klikker på select dropdown */
+select:focus {
+  background-color: #f3f3f3; /* Ændring af baggrundsfarve ved fokus */
+  border-color: #d87f24; /* Grøn kant ved fokus, kan være den accentfarve du vælger */
+}
+
+#moodCheckboxes {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+
+#moodCheckboxes label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  color: var(--font-color);
+}
+
+.mood-checkbox {
+  margin-right: 5px;
+  cursor: pointer;
 }

@@ -1,46 +1,62 @@
-let list = ["Kev og offer", "Kev og Larra", "Josef og Diana", "Jason og Sophia", "Jason og Carly", "Elias og Celia", "Sarah og Jonathan", "Larra og anden", "Sexkink", "Reginald og anden"];
+// Startdata til listen
+const list = [
+  { name: "Kevan og offer", setting: "fantasy", mood: ["vold"] },
+  { name: "Josef og Diana", setting: "modern", mood: ["hårdt", "lidenskabeligt", "blidt"] },
+  { name: "Kevan og Larra", setting: "fantasy", mood: ["lidenskabeligt", "forsigtigt", "blidt", "hårdt", "vold"] },
+  { name: "Jason og Sophia", setting: "modern", mood: ["forsigtigt", "lidenskabeligt", "hårdt", "vold"] },
+  { name: "Jason og Carly", setting: "modern", mood: ["hårdt", "blidt"] },
+  { name: "Elias og Celia", setting: "blandet", mood: ["lidenskabeligt", "hårdt", "blidt", "forsigtigt"] },
+  { name: "Sarah og Jonathan", setting: "modern", mood: ["hårdt", "blidt", "lidenskabeligt", "forsigtigt"] },
+  { name: "Larra og anden", setting: "fantasy", mood: ["vold", "forsigtigt", "blidt", "hårdt"] },
+  { name: "Reginald og anden", setting: "post-apocalypse", mood: ["hårdt", "vold"] },
+  { name: "Diana og Johan", setting: "modern", mood: ["vold", "hårdt"] },
+];
 
-function choose() {
-  return list[Math.floor(Math.random() * list.length)];
-}
+// Dynamisk generering af mood-checkboxes
+const allMoods = [...new Set(list.flatMap(obj => obj.mood))];
+const moodContainer = document.getElementById('moodCheckboxes');
+allMoods.forEach(mood => {
+  const label = document.createElement('label');
+  label.innerHTML = `
+    <input type="checkbox" class="mood-checkbox" value="${mood}"> ${mood}
+  `;
+  moodContainer.appendChild(label);
+});
 
-function visResultat() {
-  const resultat = choose();
-  const resultatElement = document.getElementById("resultat");
-  resultatElement.textContent = `Vi skal spille: ${resultat}`;
-}
-
+// Funktion til at tilføje nye elementer til listen
 function addToArray() {
-  let newItem = document.getElementById("newItem").value;
-  if (newItem.trim() !== "") {
-    list.push(newItem);  // Tilføj det nye element til arrayet
-    document.getElementById("newItem").value = "";  // Ryd inputfeltet
-    visResultat();  // Vis et tilfældigt resultat
-    updateList();  // Opdater listen på siden
+  const newItem = document.getElementById("newItem").value;
+  const newSetting = document.getElementById("newSetting").value;
+
+  const selectedMoods = Array.from(document.querySelectorAll('.mood-checkbox:checked'))
+    .map(checkbox => checkbox.value);
+
+  if (newItem && newSetting && selectedMoods.length > 0) {
+    list.push({ name: newItem, setting: newSetting, mood: selectedMoods });
+    updateFullList(); // Opdater listen i <aside>
   } else {
-    alert("Du skal skrive noget!");
+    alert("Udfyld alle felter og vælg mindst én mood.");
   }
 }
 
-function updateList() {
-  const listElement = document.getElementById("arrayList");
-  listElement.innerHTML = ""; // Ryd listen først
+// Funktion til at vise den fulde liste i <aside>
+function updateFullList() {
+  const asideListElement = document.getElementById("arrayList");
 
-  list.forEach(item => {
-    let li = document.createElement("li");
-    li.textContent = item;  // Tilføj hvert array-element som en <li> i HTML'en
-    listElement.appendChild(li);
-  });
-}
+  // Ryd listen først
+  asideListElement.innerHTML = "";
 
-function toggleList() {
-  const listElement = document.getElementById("arrayList");
-  if (listElement.style.display === "none" || listElement.style.display === "") {
-    listElement.style.display = "block";  // Vis listen
+  if (list.length === 0) {
+    asideListElement.innerHTML = "<li>Ingen elementer i listen endnu.</li>";
   } else {
-    listElement.style.display = "none";  // Skjul listen
+    // Vis alle elementer i listen
+    list.forEach(item => {
+      let li = document.createElement("li");
+      li.textContent = item.name;
+      asideListElement.appendChild(li);
+    });
   }
 }
 
-// Initial opdatering af listen, så den vises korrekt ved sideindlæsning
-document.addEventListener("DOMContentLoaded", updateList);
+// Opdater listen ved load
+updateFullList();
